@@ -16,12 +16,36 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+
+    <style name="Base.V0.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Generic, non-specific attributes -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:windowBackground">@color/windowBackground</item>-->
     </style>
+    <style name="AppTheme" parent="Base.V0.AppTheme"/>
+
+    <!-- Main Layout block start-->
+
+    <style name="Style.MainContent" parent="Base.Style.MainContent" />
+
+    <style name="Base.Style.MainContent" parent="Base.SW.Style.MainContent" />
+
+    <style name="Base.SW.Style.MainContent" parent="Base.SW0.Style.MainContent" />
+
+    <style name="Base.SW0.Style.MainContent" parent="Base.ApiLevel.Style.MainContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="Base.ApiLevel.Style.MainContent" parent="Base.V0.Style.MainContent" />
+
+    <style name="Base.V0.Style.MainContent" parent="">
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <!-- Main Layout block end-->
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
