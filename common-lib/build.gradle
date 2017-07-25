@@ -15,6 +15,7 @@
  */
 
 apply plugin: 'com.android.library'
+apply from: 'dimensions.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -38,20 +39,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-
-    compile project(':errorhandler-lib')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //Support lib
-    compile libraries.supportAnnotations
-    compile libraries.supportAppCompat
-    compile libraries.supportDesign
-    compile libraries.supportCardView
-    compile libraries.gRecyclerView
-    compile libraries.constrainLayout
+    implementation libraries.supportAnnotations
+    implementation libraries.supportAppCompat
+    implementation libraries.supportDesign
+    implementation libraries.supportCardView
+    implementation libraries.gRecyclerView
+    implementation libraries.constrainLayout
 
     //Testing
-    testCompile libraries.junit
-    androidTestCompile libraries.espressoCore
+    testImplementation libraries.junit
+    androidTestImplementation libraries.espressoCore
 
 }

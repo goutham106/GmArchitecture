@@ -46,4 +46,7 @@
     <color name="blue_grey_light">#A5B4C8</color>
     <color name="orange">#FFA500</color>
     <color name="yellow">#fff44f</color>
+
+    <color name="online_color">#06ae00</color>
+    <color name="offline_color">#1f291f</color>
 </resources>

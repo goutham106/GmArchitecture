@@ -50,7 +50,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
             public void run() {
                 decideNextActivity();
             }
-        }, 6000);
+        }, 3000);
 
 //        getCompositeDisposable().add(getDataManager()
 //                .seedDatabaseQuestions()

@@ -14,33 +14,21 @@
  * limitations under the License.
  */
 
-package com.gm.di.component;
+package com.gm.ui.test;
 
 import com.gm.di.PerActivity;
-import com.gm.di.module.ActivityModule;
-import com.gm.ui.login.LoginFragment;
-import com.gm.ui.loginbase.LoginBaseBaseActivity;
-import com.gm.ui.splash.SplashActivity;
-import com.gm.ui.test.TestActivity;
+import com.gm.ui.base.MvpPresenter;
 
-import dagger.Component;
+import java.util.List;
 
 /**
  * Name       : Gowtham
- * Created on : 21/4/17.
+ * Created on : 25/7/17.
  * Email      : goutham.gm11@gmail.com
- * GitHub     : https://github.com/goutham106
  */
 
 @PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
-public interface ActivityComponent {
+public interface TestMvpPresenter<V extends TestMvpView> extends MvpPresenter<V>  {
 
-    void inject(LoginBaseBaseActivity activity);
-
-    void inject(SplashActivity activity);
-
-    void inject(LoginFragment activity);
-
-    void inject(TestActivity activity);
+    void loadData();
 }

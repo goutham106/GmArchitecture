@@ -33,6 +33,9 @@ import com.gm.ui.signup.SignUpPresenter;
 import com.gm.ui.splash.SplashMvpPresenter;
 import com.gm.ui.splash.SplashMvpView;
 import com.gm.ui.splash.SplashPresenter;
+import com.gm.ui.test.TestMvpPresenter;
+import com.gm.ui.test.TestMvpView;
+import com.gm.ui.test.TestPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -92,5 +95,10 @@ public class ActivityModule {
         return presenter;
     }
 
+    @Provides
+    @PerActivity
+    TestMvpPresenter<TestMvpView> provideTestPresenter(TestPresenter<TestMvpView> presenter) {
+        return presenter;
+    }
 
 }

@@ -22,6 +22,7 @@ import android.content.Intent;
 import com.gm.R;
 import com.gm.ui.base.BaseActivity;
 import com.gm.ui.loginbase.LoginBaseBaseActivity;
+import com.gm.ui.test.TestActivity;
 
 import javax.inject.Inject;
 
@@ -55,7 +56,8 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openLoginActivity() {
-        Intent intent = LoginBaseBaseActivity.getStartIntent(SplashActivity.this);
+//        Intent intent = LoginBaseBaseActivity.getStartIntent(SplashActivity.this);
+        Intent intent = TestActivity.getStartIntent(SplashActivity.this);
         startActivity(intent);
         finish();
     }

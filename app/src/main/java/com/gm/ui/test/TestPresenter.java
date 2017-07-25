@@ -14,33 +14,34 @@
  * limitations under the License.
  */
 
-package com.gm.di.component;
+package com.gm.ui.test;
 
-import com.gm.di.PerActivity;
-import com.gm.di.module.ActivityModule;
-import com.gm.ui.login.LoginFragment;
-import com.gm.ui.loginbase.LoginBaseBaseActivity;
-import com.gm.ui.splash.SplashActivity;
-import com.gm.ui.test.TestActivity;
+import com.gm.data.DataManager;
+import com.gm.ui.base.BasePresenter;
+import com.gm.ui.base.MvpPresenter;
 
-import dagger.Component;
+import javax.inject.Inject;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Name       : Gowtham
- * Created on : 21/4/17.
+ * Created on : 25/7/17.
  * Email      : goutham.gm11@gmail.com
- * GitHub     : https://github.com/goutham106
  */
 
-@PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
-public interface ActivityComponent {
+public class TestPresenter<V extends TestMvpView> extends BasePresenter<V>
+        implements TestMvpPresenter<V> {
 
-    void inject(LoginBaseBaseActivity activity);
+    @Inject
+    TestPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        super(dataManager, compositeDisposable);
+    }
 
-    void inject(SplashActivity activity);
+    @Override
+    public void loadData() {
+        getMvpView().setUpRecyclerView();
+    }
 
-    void inject(LoginFragment activity);
 
-    void inject(TestActivity activity);
 }

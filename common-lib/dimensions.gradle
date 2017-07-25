@@ -1,0 +1,114 @@
+/*
+ * Copyright (c) 2017 Indyzen inc.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+public class GDPFactory extends DefaultTask {
+
+    @Input
+    String unit = "dp"
+    @Input
+    double positiveMax = 600
+    @Input
+    double negativeMax = 60
+
+    @TaskAction
+    def create() {
+        String resFolder = project.getProjectDir().getPath() + "/src/main/res/";
+        for (double dimen = 300; dimen <= 800; dimen = dimen + 30) {
+            String folder = resFolder + "values-sw" + (int) dimen + "dp";
+            String fileName = folder + "/positive_gmdps.xml";
+            new File(folder).mkdir();
+            new File(fileName).createNewFile();
+            PrintWriter printWriter = new PrintWriter(fileName);
+            printWriter.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            printWriter.println("<resources>");
+            for (int i = 1; i <= positiveMax; i++) {
+                double ratio = i / 300d;
+                double gdp = ratio * dimen;
+                printWriter.printf("\t<dimen name=\"_%ddp\">%.2f" + unit + "</dimen>\r\n", i, gdp);
+            }
+            printWriter.println("</resources>");
+            printWriter.close();
+        }
+        for (double dimen = 300; dimen <= 800; dimen = dimen + 30) {
+            String folder = resFolder + "values-sw" + (int) dimen + "dp";
+            String fileName = folder + "/negative_gmdps.xml";
+            new File(folder).mkdir();
+            new File(fileName).createNewFile();
+            PrintWriter printWriter = new PrintWriter(fileName);
+            printWriter.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            printWriter.println("<resources>");
+            for (int i = 1; i <= negativeMax; i++) {
+                double ratio = i / 300d;
+                double gdp = ratio * dimen;
+                printWriter.printf("\t<dimen name=\"minus%ddp\">%.2f" + unit + "</dimen>\r\n", i, -gdp);
+            }
+            printWriter.println("</resources>");
+            printWriter.close();
+        }
+    }
+}
+
+task createGDP(type: GDPFactory) {
+}
+
+createGDP {
+    unit = "dp"//change to "sp" if needed
+    positiveMax = 600//change to 600 or any other value if needed
+    negativeMax = 60//change to 600 or any other value if needed
+}
+
+
+public class GSPFactory extends DefaultTask {
+
+    @Input
+    String unit = "sp"
+    @Input
+    double positiveMax = 100
+
+    @TaskAction
+    def create() {
+        String resFolder = project.getProjectDir().getPath() + "/src/main/res/";
+        for (double dimen = 300; dimen <= 800; dimen = dimen + 30) {
+            createPositive(resFolder, dimen)
+        }
+        createPositive(resFolder, 1080)
+    }
+
+    private void createPositive(String resFolder, double dimen) {
+        String folder = resFolder + "values-sw" + (int) dimen + "dp";
+        String fileName = folder + "/positive_gmsps.xml";
+        new File(folder).mkdir();
+        new File(fileName).createNewFile();
+        PrintWriter printWriter = new PrintWriter(fileName);
+        printWriter.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+        printWriter.println("<resources>");
+        for (int i = 1; i <= positiveMax; i++) {
+            double ratio = i / 300d;
+            double gsp = ratio * dimen;
+            printWriter.printf("\t<dimen name=\"_%dsp\">%.2f" + unit + "</dimen>\r\n", i, gsp);
+        }
+        printWriter.println("</resources>");
+        printWriter.close();
+    }
+}
+
+task createGSP(type: GSPFactory) {
+}
+
+createGSP {
+    unit = "sp"
+    positiveMax = 100//change to 600 or any other value if needed
+}

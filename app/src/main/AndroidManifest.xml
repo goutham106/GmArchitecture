@@ -15,7 +15,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gm">
+    package="com.gm"
+    tools:ignore="ExtraText">
 
     <uses-sdk tools:overrideLibrary="com.jakewharton.rxbinding" />
     // fix Jake Wharton Libraries min sdk issue!
@@ -64,6 +65,8 @@
             android:name=".ui.main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ui.test.TestActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

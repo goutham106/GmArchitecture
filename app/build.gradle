@@ -15,7 +15,7 @@
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 apply from: '../config/quality/quality.gradle'
 
 android {
@@ -43,11 +43,14 @@ android {
             testCoverageEnabled true
         }
     }
+    flavorDimensions "mode"
     productFlavors {
         prod {
+            dimension "mode"
         }
 
         demo {
+            dimension "mode"
             buildConfigField("String", "BASE_URL", "\"http://www.omdbapi.com\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
@@ -71,44 +74,54 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':common-lib')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':common-lib')
+    implementation project(':errorhandler-lib')
+
+    //Support lib
+    implementation libraries.supportAnnotations
+    implementation libraries.supportAppCompat
+    implementation libraries.supportDesign
+    implementation libraries.supportCardView
+    implementation libraries.gRecyclerView
+    implementation libraries.constrainLayout
 
     //Log
-    compile libraries.gLog
+    implementation libraries.gLog
 
     //Rx
-    compile libraries.rxJava
-    compile libraries.rxandroid
-    compile libraries.rxbinding
+    implementation libraries.rxJava
+    implementation libraries.rxandroid
+    implementation libraries.rxbinding
 
     //Butter Knife
-    compile libraries.butterKnife
+    implementation libraries.butterKnife
     annotationProcessor libraries.butterKnifeCompiler
 
     //Dagger
-    compile libraries.dagger
+    implementation libraries.dagger
     provided libraries.daggerCompiler
     annotationProcessor libraries.daggerCompiler
 
     //Retrofit
-    compile libraries.retrofit
-    compile libraries.retrofitGsonConverter
-    compile libraries.retrofitRxJavaAdapter
+    implementation libraries.retrofit
+    implementation libraries.retrofitGsonConverter
+    implementation libraries.retrofitRxJavaAdapter
 
     //Okhttp
-    compile libraries.okHttp
-    compile libraries.okHttpLoggingInterceptor
+    implementation libraries.okHttp
+    implementation libraries.okHttpLoggingInterceptor
 
     //DbFlow
-    compile libraries.dbFlow
-    compile libraries.dbFlowCore
+    implementation libraries.dbFlow
+    implementation libraries.dbFlowCore
     annotationProcessor libraries.dbFlowProcessor
 
     //Testing
 //    testCompile libraries.junit
 //    androidTestCompile libraries.espressoCore
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:25.3.1'
+//    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+//    compile 'com.android.support:support-v4:25.3.1'
+//    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
