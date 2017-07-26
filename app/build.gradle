@@ -96,6 +96,7 @@ dependencies {
 
     //Butter Knife
     implementation libraries.butterKnife
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor libraries.butterKnifeCompiler
 
     //Dagger

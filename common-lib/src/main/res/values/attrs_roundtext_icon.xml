@@ -16,6 +16,12 @@
   -->
 
 <resources>
+    <declare-styleable name="CircleImageView">
+        <attr name="c_border_width" format="dimension" />
+        <attr name="c_border_color" format="color" />
+        <attr name="c_border_overlay" format="boolean" />
+        <attr name="c_fill_color" format="color" />
+    </declare-styleable>
     <declare-styleable name="RoundedImageViewWithBorder">
         <attr name="corner_radius" format="dimension" />
         <attr name="border_width" format="dimension" />

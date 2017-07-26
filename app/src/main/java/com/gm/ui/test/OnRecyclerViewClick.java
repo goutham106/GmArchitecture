@@ -14,18 +14,15 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
+package com.gm.ui.test;
 
-android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
-    resourcePrefix 'customactivityoncrash_'
+import android.view.View;
+import android.widget.ImageView;
 
-    defaultConfig {
-        minSdkVersion 4
-        targetSdkVersion 25
-        versionCode 7
-        versionName "1.5.0"
-    }
+/**
+ * Created by gowtham on 7/26/17.
+ */
+
+public interface OnRecyclerViewClick {
+    void onItemClick(View v, int imgRes, ImageView imageView);
 }
-

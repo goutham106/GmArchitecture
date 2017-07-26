@@ -18,13 +18,17 @@ package com.gm.common.widget.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.gm.common.R;
+
+import java.util.Random;
 
 /**
  * Name       : Gowtham
@@ -35,6 +39,11 @@ import com.gm.common.R;
 public class CircleTextImageBadgeView extends FrameLayout {
     private CircleTextImageView mProfileView;
     private CircleTextImageView mOnlineView;
+    private Context context;
+
+    private int[] mMaterialColors;
+    private static final Random RANDOM = new Random();
+
 
     public CircleTextImageBadgeView(Context context) {
         super(context);
@@ -49,10 +58,12 @@ public class CircleTextImageBadgeView extends FrameLayout {
     public CircleTextImageBadgeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (!isInEditMode())
-        initView(context, attrs);
+            initView(context, attrs);
     }
 
     private void initView(Context context, AttributeSet attrs) {
+        this.context = context;
+        mMaterialColors = context.getResources().getIntArray(R.array.colors);
         LayoutInflater.from(context).inflate(R.layout.circle_imageview_badge, this);
     }
 
@@ -61,22 +72,62 @@ public class CircleTextImageBadgeView extends FrameLayout {
         super.onFinishInflate();
         mProfileView = (CircleTextImageView) findViewById(R.id.profile_image);
         mOnlineView = (CircleTextImageView) findViewById(R.id.online_view);
+
     }
 
-    public CircleTextImageView getProfileView(){
+    public CircleTextImageView getProfileView() {
         return mProfileView;
     }
 
-    public CircleTextImageView getOnlineView(){
+    public CircleTextImageView getOnlineView() {
         return mOnlineView;
     }
 
     public void setAvatarResource(int resource) {
-        mProfileView.setImageResource(resource);
+//        mProfileView.setImageResource(resource);
+        setViews(true, resource, "");
+    }
+
+    public void setAvatarResource(String avatarText) {
+        setViews(false, 0, avatarText);
     }
 
     public void setOnline(boolean online) {
-        mOnlineView.setImageResource(online ? R.color.online_color : R.color.offline_color);
+        mOnlineView.setBorderWidth(2);
+        mOnlineView.setBorderColor(context.getResources().getColor(R.color.white));
+        mOnlineView.setOval(true);
+
+        if (online) {
+//            mOnlineView.setImageResource(R.color.online_color);
+            mOnlineView.setShapeColor(context.getResources().getColor(R.color.online_color));
+            mOnlineView.setText("1");
+            mOnlineView.setLetterCount(0);
+            mOnlineView.setTextSize(0);
+        } else {
+//            mOnlineView.setImageResource(R.color.offline_color);
+            mOnlineView.setShapeColor(context.getResources().getColor(R.color.offline_color));
+            mOnlineView.setText("0");
+            mOnlineView.setLetterCount(0);
+            mOnlineView.setTextSize(0);
+        }
     }
+
+    private void setViews(boolean isImage, int mImageResource, String text) {
+//        mProfileView.setBorderWidth(2);
+//        mProfileView.setBorderColor(context.getResources().getColor(R.color.black));
+
+        if (isImage) {
+            mProfileView.setOval(true);
+            mProfileView.setScaleType(ImageView.ScaleType.FIT_XY);
+            mProfileView.setImageResource(mImageResource);
+        } else {
+            mProfileView.setOval(true);
+            mProfileView.setShapeColor(mMaterialColors[RANDOM.nextInt(mMaterialColors.length)]);
+            mProfileView.setText(text);
+            mProfileView.setLetterCount(2);
+            mProfileView.setTextSize(18);
+        }
+    }
+
 }
 

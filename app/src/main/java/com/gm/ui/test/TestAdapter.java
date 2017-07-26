@@ -17,15 +17,19 @@
 package com.gm.ui.test;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import com.gm.R;
 import com.gm.common.widget.image.CircleTextImageBadgeView;
+import com.gm.common.widget.image.CircleTextImageView;
 
 import java.util.List;
 import java.util.Random;
@@ -45,17 +49,19 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     private int[] mImageResource;
     private static final Random RANDOM = new Random();
     private Context context;
+    private OnRecyclerViewClick recycleViewClick;
 
 
-    public TestAdapter(Context context, List<String> items) {
+    public TestAdapter(Context context, List<String> items , OnRecyclerViewClick recycleViewClick) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mMaterialColors = context.getResources().getIntArray(R.array.colors);
-//        mImageResource = new int[]{R.drawable.ruth, R.mipmap.ic_launcher};
-        mImageResource = new int[]{R.color.color_1, R.color.color_2,R.color.color_3,R.color.color_4,R.color.color_5};
+        mImageResource = new int[]{R.drawable.ruth, R.mipmap.ic_launcher};
+//        mImageResource = new int[]{R.color.color_1, R.color.color_2,R.color.color_3,R.color.color_4,R.color.color_5};
 
         mBackground = mTypedValue.resourceId;
         mValues = items;
         this.context = context;
+        this.recycleViewClick = recycleViewClick;
     }
 
     @Override
@@ -92,34 +98,24 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 //                    holder.mIcon.setOval(true);
 //                    holder.mIcon.setShapeColor(mMaterialColors[RANDOM.nextInt(mMaterialColors.length)]);
 //                    holder.mIcon.setText(mValues.get(position));
-//                    holder.mIcon.setLetterCount(2);
-//                    holder.mIcon.setTextSize(18);
+//                    holder.mIcon.setLetterCount(0);
+//                    holder.mIcon.setTextSize(0);
 //                }
 
-        if (position % 2 == 0) {
-            holder.mIcon.getProfileView().setOval(true);
-            holder.mIcon.getOnlineView().setOval(true);
-            holder.mIcon.setAvatarResource(mImageResource[RANDOM.nextInt(mImageResource.length)]);
-            holder.mIcon.setOnline(true);
-        } else {
-            holder.mIcon.getProfileView().setOval(true);
-            holder.mIcon.getOnlineView().setOval(true);
-//            holder.mIcon.getProfileView().setText("");
-            holder.mIcon.getProfileView().setShapeColor(mMaterialColors[RANDOM.nextInt(mMaterialColors.length)]);
-            holder.mIcon.getProfileView().setText(mValues.get(position));
-            holder.mIcon.getProfileView().setLetterCount(2);
-            holder.mIcon.getProfileView().setTextSize(18);
-//            holder.mIcon.setAvatarResource(mImageResource[RANDOM.nextInt(mMaterialColors.length)]);
-            holder.mIcon.setOnline(false);
-            holder.mIcon.getOnlineView().setText("");
-            holder.mIcon.getOnlineView().setShapeColor(context.getResources().getColor(R.color.offline_color));
-            holder.mIcon.getOnlineView().setLetterCount(2);
-            holder.mIcon.getOnlineView().setTextSize(18);
-        }
+        int imgRes = mImageResource[RANDOM.nextInt(mImageResource.length)];
+                if (position % 2 == 0) {
+                    holder.mIcon.setAvatarResource(imgRes);
+                    holder.mIcon.setOnline(true);
+                } else {
+                    holder.mIcon.setAvatarResource(mValues.get(position));
+                    holder.mIcon.setOnline(false);
+                }
 
 
         holder.mBoundString = mValues.get(position);
         holder.mTextView.setText(mValues.get(position));
+        ViewCompat.setTransitionName(holder.mIcon.getProfileView(),mValues.get(position));
+        holder.mIcon.setOnClickListener(v -> recycleViewClick.onItemClick(v,imgRes,holder.mIcon.getProfileView()));
     }
 
     @Override
@@ -137,9 +133,10 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         ViewHolder(View view) {
             super(view);
             mView = view;
-            //mIcon = (CircleTextImageView) view.findViewById(R.id.circleTextImageView);
+//            mIcon = (CircleTextImageView) view.findViewById(R.id.circleTextImageView);
             mIcon = (CircleTextImageBadgeView) view.findViewById(R.id.circleTextBadgeImageView);
             mTextView = (TextView) view.findViewById(android.R.id.text1);
+
         }
 
         @Override

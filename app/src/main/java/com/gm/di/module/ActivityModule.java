@@ -36,6 +36,9 @@ import com.gm.ui.splash.SplashPresenter;
 import com.gm.ui.test.TestMvpPresenter;
 import com.gm.ui.test.TestMvpView;
 import com.gm.ui.test.TestPresenter;
+import com.gm.ui.test.detail.TestDetailMvpPresenter;
+import com.gm.ui.test.detail.TestDetailMvpView;
+import com.gm.ui.test.detail.TestDetailPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -98,6 +101,12 @@ public class ActivityModule {
     @Provides
     @PerActivity
     TestMvpPresenter<TestMvpView> provideTestPresenter(TestPresenter<TestMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    TestDetailMvpPresenter<TestDetailMvpView> provideTestDetailPresenter(TestDetailPresenter<TestDetailMvpView> presenter) {
         return presenter;
     }
 

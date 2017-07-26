@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GmArchitecture.iml" filepath="$PROJECT_DIR$/GmArchitecture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/GmArchitecture.iml" filepath="$PROJECT_DIR$/.idea/GmArchitecture.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common-lib/common-lib.iml" filepath="$PROJECT_DIR$/common-lib/common-lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/errorhandler-lib/errorhandler-lib.iml" filepath="$PROJECT_DIR$/errorhandler-lib/errorhandler-lib.iml" />

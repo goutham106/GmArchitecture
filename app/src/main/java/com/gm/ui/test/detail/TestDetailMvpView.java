@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
+package com.gm.ui.test.detail;
 
-android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
-    resourcePrefix 'customactivityoncrash_'
+import com.gm.ui.base.MvpView;
 
-    defaultConfig {
-        minSdkVersion 4
-        targetSdkVersion 25
-        versionCode 7
-        versionName "1.5.0"
-    }
+/**
+ * Created by gowtham on 7/26/17.
+ */
+
+public interface TestDetailMvpView extends MvpView{
 }
-

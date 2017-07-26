@@ -93,11 +93,14 @@ public class CircleTextImageView extends RoundedImageViewWithBorder {
             iConfigBuilder.useFont(mTypeface);
         if (mTextSize > 0)
             iConfigBuilder.fontSize(toPx(mTextSize));
+        if (mTextSize == 0)
+            iConfigBuilder.fontSize(0);
         if (isBold())
             iConfigBuilder.bold();
         if (isUppercase())
             iConfigBuilder.toUpperCase();
         mBuilder = iConfigBuilder.endConfig();
+        //FIXME : once we change CircleImageView to RoundedImageView we have to un comment the below if loop :)
         if (isOval())
             mDrawable = mBuilder.buildRound(mText, mShapeColor);
         else if (getCornerRadius() > 0)

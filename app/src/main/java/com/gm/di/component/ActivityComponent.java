@@ -22,6 +22,7 @@ import com.gm.ui.login.LoginFragment;
 import com.gm.ui.loginbase.LoginBaseBaseActivity;
 import com.gm.ui.splash.SplashActivity;
 import com.gm.ui.test.TestActivity;
+import com.gm.ui.test.detail.TestDetailActivity;
 
 import dagger.Component;
 
@@ -43,4 +44,6 @@ public interface ActivityComponent {
     void inject(LoginFragment activity);
 
     void inject(TestActivity activity);
+
+    void inject(TestDetailActivity activity);
 }

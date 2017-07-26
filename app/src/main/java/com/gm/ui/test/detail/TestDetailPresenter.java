@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
+package com.gm.ui.test.detail;
 
-android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
-    resourcePrefix 'customactivityoncrash_'
+import com.gm.data.DataManager;
+import com.gm.ui.base.BasePresenter;
 
-    defaultConfig {
-        minSdkVersion 4
-        targetSdkVersion 25
-        versionCode 7
-        versionName "1.5.0"
+import javax.inject.Inject;
+
+import io.reactivex.disposables.CompositeDisposable;
+
+/**
+ * Created by gowtham on 7/26/17.
+ */
+
+public class TestDetailPresenter<V extends TestDetailMvpView> extends BasePresenter<V> implements TestDetailMvpPresenter<V> {
+
+    @Inject
+    public TestDetailPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        super(dataManager, compositeDisposable);
     }
 }
-

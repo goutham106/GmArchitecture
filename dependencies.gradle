@@ -1,72 +1,82 @@
 /*
- * Copyright (c) 2017 Gowtham Parimelazhagan
+ * Copyright (C) 2017  Gowtham Parimelazhagan.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Affero General Public License as published
+ *     by the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Affero General Public License for more details.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *     You should have received a copy of the GNU Affero General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 
 ext.versions = [
-        code                         : 1,
-        name                         : '1.0',
+        code                     : 1,
+        name                     : '1.0',
 
-        minSdk                       : 15,
-        targetSdk                    : 25,
-        compileSdk                   : 25,
-        buildTools                   : '25.0.2',
+        minSdk                   : 19,
+        targetSdk                : 25,
+        compileSdk               : 25,
+        buildTools               : '26.0.0',
 
-        androidGradlePlugin          : '2.3.1',
-        retrolambdaGradlePlugin      : '3.3.1',
+        androidGradlePlugin      : '2.3.2',
+        retrolambdaGradlePlugin  : '3.3.1',
 
-        dagger                       : '2.8',
-        butterKnife                  : '8.5.1',
+        dagger                   : '2.8',
+        javaxAnnotate            : '1.0',
+        javaxInjection           : '1',
 
-        glideVer                     : '3.7.0',
-        glideOkhttpIntegrationVer    : '1.4.0@aar',
+        butterKnife              : '8.5.1',
 
-        rxJava                       : '2.0.6',
-        rxAndroid                    : '2.0.1',
-        rxBinding                    : '2.0.0',
+        glideVer                 : '3.8.0',
+        glideOkhttpIntegrationVer: '1.5.0@aar',
 
-        supportLibs                  : '25.3.1',
-        constrainLayout              : "1.0.2",
+        rxJava                   : '2.0.6',
+        rxAndroid                : '2.0.1',
+        rxBinding                : '2.0.0',
 
-        okHttp                       : '3.4.1',
-        retrofit                     : '2.1.0',
-        retrofitAdapter              : '1.0.0',
+        supportLibs              : '25.3.1',
+        constrainLayout          : '1.0.2',
+        multidexVersion          : '1.0.1',
 
-        gson                         : '2.8.0',
+        okHttp                   : '3.8.1',
+        retrofit                 : '2.3.0',
+        retrofitAdapter          : '1.0.0',
 
-        dbFlowVersion                : '4.0.0-beta7',
+        gson                     : '2.8.0',
+
+        dbFlowVersion            : '4.0.0-beta7',
 
         //Gm
-        gmRecyclerview               : '0.4',
-        gmLog                        : '0.1',
+        gmRecyclerview           : '0.5',
+        gmLog                    : '0.1',
 
-        espresso                     : '2.2.2',
-        stetho                       : '1.3.1',
-        leakCanary                   : '1.5',
-        tinyDancer                   : '0.1.1',
+        espresso                 : '2.2.2',
+        stetho                   : '1.3.1',
+        leakCanary               : '1.5',
+        tinyDancer               : '0.1.1',
 
-        junit                        : '4.12',
-        robolectric                  : '3.1.2',
-        assertJ                      : '2.5.0',
-        equalsVerifier               : '1.7.5',
-        mockito                      : '1.10.19',
-        supportTestRunner            : '0.5',
+        junit                    : '4.12',
+        robolectric              : '3.1.2',
+        assertJ                  : '2.5.0',
+        equalsVerifier           : '1.7.5',
+        mockito                  : '1.10.19',
+        supportTestRunner        : '0.5',
+
+        fbVersion                : '4.22.1',
+        cardIoVersion            : '5.5.0',
+        lottieVersion            : '2.0.0',
 ]
 
 ext.gradlePlugins = [
-        android          : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
-        retrolambda      : "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
+        android    : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
+        retrolambda: "me.tatarka:gradle-retrolambda:$versions.retrolambdaGradlePlugin",
 ]
 
 ext.libraries = [
@@ -79,21 +89,26 @@ ext.libraries = [
         palette                 : "com.android.support:palette-v7:$versions.supportLibs",
         constrainLayout         : "com.android.support.constraint:constraint-layout:$versions.constrainLayout",
         vectorDrawable          : "com.android.support:support-vector-drawable:$versions.supportLibs",
-        animatedVectorDrawable  : "com.android.support:animated-vector-drawable:$versions.supportLibs",
+        vectorDrawableAnimated  : "com.android.support:animated-vector-drawable:$versions.supportLibs",
+
+        multidex                : "com.android.support:multidex:$versions.multidexVersion",
 
         //Image Tools
-        glide                    : "com.github.bumptech.glide:glide:$versions.glideVer",
-        glideOkhttpIntegration    : "com.github.bumptech.glide:okhttp3-integration:$versions.glideOkhttpIntegrationVer",
+        glide                   : "com.github.bumptech.glide:glide:$versions.glideVer",
+        glideAnnotation         : "com.github.bumptech.glide:compiler:$versions.glideVer",
+        glideOkhttpIntegration  : "com.github.bumptech.glide:okhttp3-integration:$versions.glideOkhttpIntegrationVer",
 
         //Goutham Tools
-        gRecyclerView          : "com.github.goutham106:grecyclerview:$versions.gmRecyclerview",
-        gLog                   : "com.gm.glog.library:glog:$versions.gmLog",
+        gRecyclerView           : "com.github.goutham106:grecyclerview:$versions.gmRecyclerview",
+        gLog                    : "com.gm.glog.library:glog:$versions.gmLog",
 
         //Injection Tools
         butterKnife             : "com.jakewharton:butterknife:$versions.butterKnife",
         butterKnifeCompiler     : "com.jakewharton:butterknife-compiler:$versions.butterKnife",
         dagger                  : "com.google.dagger:dagger:$versions.dagger",
         daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
+        javaxAnnotation         : "javax.annotation:jsr250-api:$versions.javaxAnnotate",
+        javaxInject             : "javax.inject:javax.inject:$versions.javaxInjection",
 
         //Rx Tools
         rxJava                  : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
@@ -117,6 +132,7 @@ ext.libraries = [
         stetho                  : "com.facebook.stetho:stetho:$versions.stetho",
         stethoOkHttp            : "com.facebook.stetho:stetho-okhttp3:$versions.stetho",
         leakCanary              : "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
+        leakCanarydep           : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary",
         tinyDancer              : "com.github.brianPlummer:tinydancer:$versions.tinyDancer",
 
         // Test dependencies
@@ -130,4 +146,16 @@ ext.libraries = [
         supportTestRules        : "com.android.support.test:rules:$versions.supportTestRunner",
         espressoCore            : "com.android.support.test.espresso:espresso-core:$versions.espresso",
         espressoContrib         : "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
+        espressoIntents         : "com.android.support.test.espresso:espresso-intents:$versions.espresso",
+
+
+        //Facebook
+        facebook                : "com.facebook.android:facebook-android-sdk:$versions.fbVersion",
+
+        //Card.io
+        cardIo                  : "io.card:android-sdk:$versions.cardIoVersion",
+
+        //Lottie
+        lottie                  : "com.airbnb.android:lottie:$versions.lottieVersion",
+
 ]

@@ -92,11 +92,13 @@ public class RoundedDrawable extends Drawable {
             if (drawable instanceof RoundedDrawable) {
                 // just return if it's already a RoundedDrawable
                 return drawable;
-            } else if (drawable instanceof ColorDrawable) {
+            }
+            else if (drawable instanceof ColorDrawable) {
                  /*We may work in future at present we just convert in to bitmap by following
-                 line 104 :)*/
-//                return drawable;
-            } else if (drawable instanceof LayerDrawable) {
+                 line 110 :)*/
+                return drawable;
+            }
+            else if (drawable instanceof LayerDrawable) {
                 LayerDrawable ld = (LayerDrawable) drawable;
                 int num = ld.getNumberOfLayers();
                 // loop through layers to and change to RoundedDrawables if possible
@@ -122,13 +124,8 @@ public class RoundedDrawable extends Drawable {
         Bitmap bitmap;
         int width = drawable.getIntrinsicWidth();
         int height = drawable.getIntrinsicHeight();
-
-        if (drawable instanceof ColorDrawable) {
-            bitmap = Bitmap.createBitmap(2, 2, Config.ARGB_8888);
-        } else {
-            bitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
-        }
         if (width > 0 && height > 0) {
+            bitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
             drawable.draw(canvas);
